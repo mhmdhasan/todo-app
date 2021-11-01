@@ -549,6 +549,10 @@ body {
 	.app-header {
 		padding: 3rem 1rem;
 	}
+	.app-header h1 {
+		font-size: 3rem;
+		margin-bottom: 2rem;
+	}
 	.app-holder::before {
 		display: none;
 	}
