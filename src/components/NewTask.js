@@ -9,7 +9,7 @@ const NewTask = ({ newTaskText, setNewTaskText, addTask, chLimit }) => {
 
 	return (
 		<div className='new-item'>
-			<textarea cols='30' rows='1' placeholder='Add new task...' value={newTaskText} onChange={handleChange}></textarea>
+			<input cols='30' rows='1' placeholder='Add new task...' value={newTaskText} onChange={handleChange} />
 			<button className='save' onClick={() => addTask(newTaskText)}>
 				<AiFillCheckCircle size='1.1rem' />
 			</button>

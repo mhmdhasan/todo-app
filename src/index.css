@@ -417,7 +417,7 @@ body {
 	padding: 1rem;
 	color: #fff;
 	border-radius: 0.5rem;
-	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.07);
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
 }
 .app-header h1 {
 	line-height: 1rem;
@@ -492,7 +492,7 @@ body {
 	justify-content: space-between;
 	position: relative;
 }
-.new-item textarea {
+.new-item input {
 	width: 100%;
 	background: none;
 	color: #06beb6;
@@ -500,11 +500,11 @@ body {
 	resize: none;
 	overflow: hidden;
 }
-.new-item textarea:focus {
+.new-item input:focus {
 	border: none;
 	outline: none;
 }
-.new-item textarea::placeholder {
+.new-item input::placeholder {
 	color: #06beb6;
 	font-size: 0.9rem;
 	font-family: monospace;
