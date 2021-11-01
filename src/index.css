@@ -353,7 +353,12 @@ template {
 	display: none;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+:root {
+	--theme: blue;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;800&family=PT+Sans:wght@400;700&display=swap');
+
 ::-webkit-scrollbar {
 	width: 0.2rem;
 }
@@ -387,15 +392,46 @@ body {
 	right: 0;
 	background: #fff;
 	color: #000;
-	padding: 1rem;
 	text-align: right;
 	z-index: 999;
 	box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
 	transition: all 0.3s;
+	border-radius: 0 0 1rem 1rem;
+}
+
+.setting-inner {
+	padding: 1rem;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	border-radius: 0 0 1rem 1rem;
+}
+
+.setting::before {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: calc(100% - 1rem);
+	width: 100vw;
+	height: calc(100vh + 1rem);
+	background: #000;
+	opacity: 0.7;
+	z-index: -1;
+	display: none;
+}
+
+.setting-inner {
+	position: relative;
+	z-index: 10;
 }
 
 .setting.show {
 	transform: none;
+}
+
+.setting.show::before {
+	display: block;
 }
 
 .setting-theme {
@@ -422,11 +458,12 @@ body {
 	cursor: pointer;
 	width: 35px;
 	height: 30px;
-	border-radius: 0 0 0.25rem 0.25rem;
+	border-radius: 0 0 30rem 30rem;
 	border: none;
 	position: absolute;
-	bottom: -30px;
+	bottom: -29px;
 	left: 2rem;
+	padding: 0;
 }
 
 .theme-options {
@@ -437,59 +474,63 @@ body {
 }
 
 .theme-1 {
-	background: linear-gradient(45deg, #06beb6, #48b1bf);
+	background: linear-gradient(to top, #06beb6, #48b1bf);
 }
 .theme-1 .todo-item-complete,
 .theme-1 .new-item input,
 .theme-1 .new-item input::placeholder,
 .theme-1 .save,
-.theme-1 .toggle-setting {
+.theme-1 .toggle-setting,
+.theme-1 .copyrights a {
 	color: #48b1bf;
 }
 .theme-2 {
-	background: linear-gradient(45deg, #b993d6, #8ca6db);
+	background: linear-gradient(to top, #b993d6, #8ca6db);
 }
 .theme-2 .todo-item-complete,
 .theme-2 .new-item input,
 .theme-2 .new-item input::placeholder,
 .theme-2 .save,
-.theme-2 .toggle-setting {
+.theme-2 .toggle-setting,
+.theme-2 .copyrights a {
 	color: #8ca6db;
 }
 .theme-3 {
-	background: linear-gradient(45deg, #fe7378, #fe977b);
+	background: linear-gradient(to top, #fe7378, #fe977b);
 }
 .theme-3 .todo-item-complete,
 .theme-3 .new-item input,
 .theme-3 .new-item input::placeholder,
 .theme-3 .save,
-.theme-3 .toggle-setting {
+.theme-3 .toggle-setting,
+.theme-3 .copyrights a {
 	color: #fe977b;
 }
 .theme-4 {
-	background: linear-gradient(45deg, #e53935, #e35d5b);
+	background: linear-gradient(to top, #e53935, #e35d5b);
 }
 .theme-4 .todo-item-complete,
 .theme-4 .new-item input,
 .theme-4 .new-item input::placeholder,
 .theme-4 .save,
-.theme-4 .toggle-setting {
+.theme-4 .toggle-setting,
+.theme-4 .copyrights a {
 	color: #e35d5b;
 }
 .theme-5 {
-	background: linear-gradient(45deg, #76b852, #8dc26f);
+	background: linear-gradient(to top, #76b852, #8dc26f);
 }
 .theme-5 .todo-item-complete,
 .theme-5 .new-item input,
 .theme-5 .new-item input::placeholder,
 .theme-5 .save,
-.theme-5 .toggle-setting {
+.theme-5 .toggle-setting,
+.theme-5 .copyrights a {
 	color: #8dc26f;
 }
 
 .app-message {
 	font-size: 0.8rem;
-	font-style: italic;
 	text-align: center;
 	margin: 0;
 }
@@ -504,7 +545,6 @@ body {
 	max-width: 20rem;
 	height: 35rem;
 	max-height: 40rem;
-	/* max-height: 40rem; */
 	background: #fff;
 	border: 2px solid #eee;
 	margin: 0 auto;
@@ -539,7 +579,7 @@ body {
 	text-align: center;
 	margin-bottom: 3rem;
 	line-height: 1rem;
-	background: rgba(255, 255, 255, 0.2);
+	background: rgba(255, 255, 255, 0.1);
 	position: relative;
 	padding: 1rem;
 	color: #fff;
@@ -548,9 +588,26 @@ body {
 }
 .app-header h1 {
 	line-height: 1rem;
+	font-size: 3rem;
 	margin-bottom: 0;
+	font-weight: 200;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.completed-tasks-header {
+	text-align: center;
 	text-transform: uppercase;
-	font-weight: 700;
+	left: 0.1rem;
+	font-weight: 300;
+	font-family: 'Montserrat', sans-serif;
+	padding-top: 1rem;
+	padding-bottom: 0.5rem;
+	margin-bottom: 0;
+}
+
+.app-header p {
+	font-weight: 300;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .todo-item-text {
@@ -666,7 +723,7 @@ body {
 		border: none;
 	}
 	.app-header {
-		padding: 3rem 1rem;
+		padding: 2rem 1rem;
 	}
 	.app-header h1 {
 		font-size: 3rem;
@@ -680,4 +737,30 @@ body {
 		min-height: 100%;
 		border-radius: 0;
 	}
+	.copyrights {
+		display: none;
+	}
+}
+
+@media (max-width: 400px) {
+	.app-header h1 {
+		font-size: 4rem;
+		margin-bottom: 2rem;
+	}
+}
+
+.copyrights {
+	text-align: center;
+	position: absolute;
+	bottom: 1rem;
+	left: 50%;
+	transform: translateX(-50%);
+	color: #999;
+	font-weight: 300;
+	font-size: 0.8rem;
+}
+
+.copyrights a {
+	color: #000;
+	text-decoration: none;
 }

@@ -8,19 +8,39 @@ import { nanoid } from 'nanoid';
 
 function App() {
 	const TasksData = [
-		{ id: nanoid(), text: 'This is a test task', status: false },
-		{ id: nanoid(), text: 'Meet Mai tomorrow', status: false },
+		{
+			id: nanoid(),
+			text: 'This is a test completed task',
+			status: true,
+		},
+		{
+			id: nanoid(),
+			text: 'A very important task',
+			status: false,
+		},
 	];
 
 	const [tasks, setTasks] = useState(TasksData);
 	const [newTaskText, setNewTaskText] = useState('');
 	const [theme, setTheme] = useState('theme-1');
+	const [themeColor, setThemeColor] = useState('#48b1bf');
 
 	console.log(tasks);
 
 	const chLimit = 25;
 
 	useEffect(() => {
+		const newTheme = JSON.parse(localStorage.getItem('app-theme'));
+		if (newTheme) {
+			setTheme(newTheme);
+		}
+
+		const newThemeColor = JSON.parse(localStorage.getItem('app-theme-color'));
+		if (newThemeColor) {
+			setThemeColor(newThemeColor);
+		}
+		document.querySelector('#themeColor').setAttribute('content', newThemeColor);
+
 		const getNewTasks = JSON.parse(localStorage.getItem('todo-app-tasks'));
 		if (getNewTasks) {
 			setTasks(getNewTasks);
@@ -31,9 +51,24 @@ function App() {
 		localStorage.setItem('todo-app-tasks', JSON.stringify(tasks));
 	}, [tasks]);
 
+	useEffect(() => {
+		localStorage.setItem('app-theme', JSON.stringify(theme));
+	}, [theme]);
+
+	useEffect(() => {
+		localStorage.setItem('app-theme-color', JSON.stringify(themeColor));
+	}, [themeColor]);
+
 	// Add new task
 	const addTask = (task) => {
-		const newTasks = [...tasks, { id: nanoid(), text: task, status: false }];
+		const newTasks = [
+			...tasks,
+			{
+				id: nanoid(),
+				text: task,
+				status: false,
+			},
+		];
 		if (newTaskText.length <= chLimit) {
 			if (newTaskText.trim().length > 0) {
 				setTasks(newTasks);
@@ -50,6 +85,7 @@ function App() {
 		setTasks(newTasks);
 	};
 
+	// Complete task
 	const completeTask = (id, st) => {
 		let newTasks = [...tasks];
 		let indexOfTask = newTasks.findIndex((task) => task.id === id);
@@ -60,19 +96,10 @@ function App() {
 		setTasks(newTasks);
 	};
 
-	useEffect(() => {
-		const newTheme = JSON.parse(localStorage.getItem('app-theme'));
-		if (newTheme) {
-			setTheme(newTheme);
-		}
-	}, []);
-
-	useEffect(() => {
-		localStorage.setItem('app-theme', JSON.stringify(theme));
-	}, [theme]);
-
+	// Change theme
 	const changeTheme = (theme) => {
 		setTheme(theme);
+		setThemeColor(themeColor);
 	};
 
 	return (
@@ -80,7 +107,7 @@ function App() {
 			<div className='app-holder'>
 				<div className={`app-screen ${theme}`}>
 					<Header />
-					<Sidebar changeTheme={changeTheme} />
+					<Sidebar changeTheme={changeTheme} setThemeColor={setThemeColor} />
 
 					<div className='todo-list'>
 						<TasksList tasks={tasks} deleteTask={deleteTask} completeTask={completeTask} />
@@ -88,9 +115,16 @@ function App() {
 						<NewTask chLimit={chLimit} newTaskText={newTaskText} setNewTaskText={setNewTaskText} addTask={addTask} />
 					</div>
 
-					<h4 style={{ textAlign: 'center', paddingTop: '1rem', paddingBottom: '0.5rem', marginBottom: '0' }}>Completed Tasks</h4>
+					<h4 className='completed-tasks-header'>Completed Tasks</h4>
 					<CompletedTasks tasks={tasks} deleteTask={deleteTask} completeTask={completeTask} />
 				</div>
+			</div>
+
+			<div className='copyrights'>
+				Made by{' '}
+				<a href='https://mohamedhasan.one' target='_blank' rel='noreferrer'>
+					Mohamedhasan.one
+				</a>
 			</div>
 		</div>
 	);
