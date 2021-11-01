@@ -15,12 +15,25 @@ function App() {
 
 	const chLimit = 25;
 
+	useEffect(() => {
+		const getNewTasks = JSON.parse(localStorage.getItem('todo-app-tasks'));
+		if (getNewTasks) {
+			setTasks(getNewTasks);
+		}
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem('todo-app-tasks', JSON.stringify(tasks));
+	}, [tasks]);
+
 	// Add new task
 	const addTask = (task) => {
 		const newTasks = [...tasks, { id: nanoid(), text: task }];
 		if (newTaskText.length <= chLimit) {
-			setTasks(newTasks);
-			setNewTaskText('');
+			if (newTaskText.trim().length > 0) {
+				setTasks(newTasks);
+				setNewTaskText('');
+			}
 		}
 	};
 
