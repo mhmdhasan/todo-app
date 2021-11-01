@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BiCog } from 'react-icons/bi';
+import { FaCog } from 'react-icons/fa';
 
 const Sidebar = ({ changeTheme }) => {
 	useEffect(() => {
@@ -21,7 +21,7 @@ const Sidebar = ({ changeTheme }) => {
 				</div>
 			</div>
 			<button className='toggle-setting'>
-				<BiCog size='1rem' />
+				<FaCog size='1rem' />
 			</button>
 		</div>
 	);
