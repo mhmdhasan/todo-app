@@ -21,7 +21,7 @@ const Sidebar = ({ changeTheme }) => {
 				</div>
 			</div>
 			<button className='toggle-setting'>
-				<BiCog />
+				<BiCog size='1rem' />
 			</button>
 		</div>
 	);
