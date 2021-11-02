@@ -737,9 +737,6 @@ body {
 		min-height: 100%;
 		border-radius: 0;
 	}
-	.copyrights {
-		display: none;
-	}
 }
 
 @media (max-width: 400px) {
@@ -763,4 +760,10 @@ body {
 .copyrights a {
 	color: #000;
 	text-decoration: none;
+}
+
+@media (max-width: 786px) {
+	.copyrights {
+		display: none;
+	}
 }

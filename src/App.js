@@ -87,6 +87,7 @@ function App() {
 
 	// Complete task
 	const completeTask = (id, st) => {
+		// Mutate the tasks state depending on checking the taks
 		let newTasks = [...tasks];
 		let indexOfTask = newTasks.findIndex((task) => task.id === id);
 		newTasks[indexOfTask] = {
