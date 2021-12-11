@@ -87,7 +87,7 @@ function App() {
 
 	// Complete task
 	const completeTask = (id, st) => {
-		// Mutate the tasks state depending on checking the taks
+		// Mutate the tasks state depending on checking the task
 		let newTasks = [...tasks];
 		let indexOfTask = newTasks.findIndex((task) => task.id === id);
 		newTasks[indexOfTask] = {
@@ -123,8 +123,8 @@ function App() {
 
 			<div className='copyrights'>
 				Made by{' '}
-				<a href='https://mohamedhasan.one' target='_blank' rel='noreferrer'>
-					Mohamedhasan.one
+				<a href='https://mohamedhasan.me' target='_blank' rel='noreferrer'>
+					Mohamedhasan.me
 				</a>
 			</div>
 		</div>
