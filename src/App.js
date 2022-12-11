@@ -10,6 +10,36 @@ function App() {
 	const TasksData = [
 		{
 			id: nanoid(),
+			text: 'Matching Localization Switcher',
+			status: false,
+		},
+		{
+			id: nanoid(),
+			text: 'Verify & Approval Screens',
+			status: false,
+		},
+		{
+			id: nanoid(),
+			text: 'All Error pages [503 Error]',
+			status: false,
+		},
+		{
+			id: nanoid(),
+			text: 'Use the new logo',
+			status: false,
+		},
+		{
+			id: nanoid(),
+			text: 'Use the new bs.validation script',
+			status: false,
+		},
+		{
+			id: nanoid(),
+			text: 'Use the new syle css file',
+			status: false,
+		},
+		{
+			id: nanoid(),
 			text: 'This is a test completed task',
 			status: true,
 		},
